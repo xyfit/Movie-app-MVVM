@@ -1,13 +1,14 @@
-package com.example.recycler
+package com.example.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recycler.models.MovieModel
 import com.example.recycler.databinding.ItemLyBinding
 import com.squareup.picasso.Picasso
 
 
-class SubMemberAdapter(val beseList: List<MovieModel>): RecyclerView.Adapter<SubMemberAdapter.ItemHolder>(){
+class SubListAdapter(val beseList: List<MovieModel>): RecyclerView.Adapter<SubListAdapter.ItemHolder>(){
     inner class ItemHolder(val b: ItemLyBinding):RecyclerView.ViewHolder(b.root){
 
     fun bind(itemData: MovieModel){

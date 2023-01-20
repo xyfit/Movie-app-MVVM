@@ -1,22 +1,19 @@
 package com.example.recycler
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recycler.databinding.ItemLyBinding
+import com.example.recycler.adapters.SubListAdapter
 import com.example.recycler.databinding.UserBinding
-import com.squareup.picasso.Picasso
+import com.example.recycler.models.MovieModel
 
-class UserAdapter(val beseList: List<MovieModel>,val itemCallback: OnItemCallback):RecyclerView.Adapter<UserAdapter.ItemHolder>(){
+class UserAdapter(val beseList: List<MovieModel>, val itemCallback: OnItemCallback):RecyclerView.Adapter<UserAdapter.ItemHolder>(){
     inner class ItemHolder(val b: UserBinding):RecyclerView.ViewHolder(b.root){
         fun bind(itemData: MovieModel){
             b.titleId.text = itemData.name
             b.recycler.layoutManager = LinearLayoutManager(b.root.context, LinearLayoutManager.HORIZONTAL, false)
-            b.recycler.adapter = SubMemberAdapter(beseList)
+            b.recycler.adapter = SubListAdapter(beseList)
 
         }
 
@@ -45,5 +42,5 @@ class UserAdapter(val beseList: List<MovieModel>,val itemCallback: OnItemCallbac
 }
 
 interface OnItemCallback{
-    fun subMemberItemClick(s:MovieModel)
+    fun subMemberItemClick(s: MovieModel)
 }

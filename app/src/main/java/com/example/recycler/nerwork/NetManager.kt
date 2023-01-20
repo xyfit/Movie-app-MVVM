@@ -1,4 +1,4 @@
-package com.example.recycler
+package com.example.recycler.nerwork
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -7,7 +7,7 @@ object NetManager {
     var retrofit: Retrofit? = null
     var api: Api? = null
 
-    fun apiClient(): Api{
+    fun apiClient(): Api {
         if(api == null){
             retrofit = Retrofit.Builder().baseUrl("https://www.howtodoandroid.com/")
                 .addConverterFactory(GsonConverterFactory.create())

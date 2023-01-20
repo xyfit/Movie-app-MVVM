@@ -1,5 +1,6 @@
-package com.example.recycler
+package com.example.recycler.nerwork
 
+import com.example.recycler.models.MovieModel
 import retrofit2.Call
 import retrofit2.http.GET
 
