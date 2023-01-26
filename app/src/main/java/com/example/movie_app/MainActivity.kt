@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler.databinding.ActivityMainBinding
 import com.example.recycler.models.MovieModel
 import com.example.recycler.nerwork.NetManager
+import com.example.recycler.viewmodel.MyViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,46 +20,49 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MyViewModel
 
     @SuppressLint("Telegraph", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+
+        viewModel = ViewModelProvider(this)[MyViewModel::class.java]
+
+
         setContentView(view)
-        initApi()
+        loadApi()
         initRec()
+        initLiveData()
+
+        viewModel.movieLoadApi()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.movieLoadApi()
+        }
+
+    }
+
+    private fun initLiveData() {
+        viewModel.dataList.observe(this, Observer {
+            binding.recyclerMain.adapter = UserAdapter(it, object : OnItemCallback { override fun subMemberItemClick(s: MovieModel) {} }) })
+
+        viewModel.error.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.progress.observe(this, Observer {
+            binding.swipeRefresh.isRefreshing = it
+        })
     }
 
     private fun initRec() {
         binding.recyclerMain.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun initApi() {
-        NetManager.apiClient().getCourse().enqueue(object : Callback<List<MovieModel>> {
-            override fun onResponse(
-                call: Call<List<MovieModel>>,
-                response: Response<List<MovieModel>>
-            ) {
-                if (response.isSuccessful) {
-                    val getData = response.body()
-                    getData?.let {
-                    binding.recyclerMain.adapter = UserAdapter(getData, object : OnItemCallback{
-                        override fun subMemberItemClick(s: MovieModel) {
+    private fun loadApi() {
 
-                        }
-                    })
-
-                    }
-                    val fffff = getData?.map { it.name }?.joinToString("\n")
-                    Log.d("sssssssddfgfg", "$fffff")
-                }
-            }
-
-            override fun onFailure(call: Call<List<MovieModel>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "${t.localizedMessage}", Toast.LENGTH_LONG).show()
-            }
-        })
     }
 }
 
