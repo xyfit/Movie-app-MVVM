@@ -1,4 +1,4 @@
-package com.example.recycler.nerwork
+package com.example.movie_app.nerwork
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

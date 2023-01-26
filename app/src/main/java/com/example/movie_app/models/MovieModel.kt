@@ -1,4 +1,4 @@
-package com.example.recycler.models
+package com.example.movie_app.models
 
 data class MovieModel(
     val imageUrl: String,

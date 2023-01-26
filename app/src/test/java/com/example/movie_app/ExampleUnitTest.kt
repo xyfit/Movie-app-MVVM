@@ -1,4 +1,4 @@
-package com.example.recycler
+package com.example.movie_app
 
 import org.junit.Test
 

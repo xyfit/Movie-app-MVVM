@@ -1,12 +1,12 @@
-package com.example.recycler
+package com.example.movie_app
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recycler.adapters.SubListAdapter
-import com.example.recycler.databinding.UserBinding
-import com.example.recycler.models.MovieModel
+import com.example.movie_app.adapters.SubListAdapter
+import com.example.movie_app.databinding.UserBinding
+import com.example.movie_app.models.MovieModel
 
 class UserAdapter(val beseList: List<MovieModel>, val itemCallback: OnItemCallback):RecyclerView.Adapter<UserAdapter.ItemHolder>(){
     inner class ItemHolder(val b: UserBinding):RecyclerView.ViewHolder(b.root){

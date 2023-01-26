@@ -1,10 +1,10 @@
-package com.example.recycler.adapters
+package com.example.movie_app.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recycler.models.MovieModel
-import com.example.recycler.databinding.ItemLyBinding
+import com.example.movie_app.models.MovieModel
+import com.example.movie_app.databinding.ItemLyBinding
 import com.squareup.picasso.Picasso
 
 

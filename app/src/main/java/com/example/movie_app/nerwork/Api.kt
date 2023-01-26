@@ -1,6 +1,6 @@
-package com.example.recycler.nerwork
+package com.example.movie_app.nerwork
 
-import com.example.recycler.models.MovieModel
+import com.example.movie_app.models.MovieModel
 import retrofit2.Call
 import retrofit2.http.GET
 
